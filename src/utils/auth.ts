@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { Response } from "express";
-
+// We include the userId in the token and set the expiration to 1 hour
 const generateToken = (res: Response, userId: string) => {
   const jwtSecret = process.env.JWT_SECRET || "";
   const token = jwt.sign({ userId }, jwtSecret, {

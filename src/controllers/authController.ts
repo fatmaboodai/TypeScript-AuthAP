@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import User from "../models/User";
 import { generateToken, clearToken } from "../utils/auth";
 // Would handle user registration (e.g., saving user data to a database).
-const registerUser = async (req: Request, res: Response) => {
+export const registerUser = async (req: Request, res: Response) => {
     const { name, email, password } = req.body;
     const userExists = await User.findOne({ email });
   
@@ -30,7 +30,7 @@ const registerUser = async (req: Request, res: Response) => {
 
 
 // Would handle user authentication (e.g., verifying credentials).
-const authenticateUser = async (req: Request, res: Response) => {
+export const authenticateUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
 
@@ -47,9 +47,7 @@ const authenticateUser = async (req: Request, res: Response) => {
 };
 
 // Would handle user logout (e.g., clearing session data).
-const logoutUser = (req: Request, res: Response) => {
+export const logoutUser = (req: Request, res: Response) => {
     clearToken(res);
     res.status(200).json({ message: "User logged out" });
   };
-  
-export { registerUser, authenticateUser, logoutUser };
