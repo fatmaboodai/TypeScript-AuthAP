@@ -1,6 +1,14 @@
 import { Request, Response } from "express";
 import User from "../models/User";
 import { generateToken, clearToken } from "../utils/auth";
+
+export const getUsers = async (req: Request, res: Response) => {
+  //  this is how we find all the data in the cluster
+  const users = await User.find({});
+  res.status(200).json(users);
+  
+};
+
 // Would handle user registration (e.g., saving user data to a database).
 export const registerUser = async (req: Request, res: Response) => {
     const { name, email, password } = req.body;
